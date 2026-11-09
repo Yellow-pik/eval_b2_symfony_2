@@ -33,4 +33,15 @@ final class ValidateController extends AbstractController
 
         return $this->redirectToRoute('app_validate');
     }
+    
+    #[Route('/validate/{id}/refuser', name: 'app_reject_event', methods: ['POST'])]
+    public function reject(Event $event, EntityManagerInterface $entityManager): Response
+    {
+        $entityManager->remove($event);
+        $entityManager->flush();
+
+        $this->addFlash('success', 'L\'événement « '.$event->getTitle().' » a été refusé.');
+
+        return $this->redirectToRoute('app_validate');
+    }
 }

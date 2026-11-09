@@ -1,0 +1,25 @@
+{# Noms des mois en français (le filtre date affiche les mois en anglais) #}
+{% set mois = ['janv.', 'févr.', 'mars', 'avr.', 'mai', 'juin', 'juil.', 'août', 'sept.', 'oct.', 'nov.', 'déc.'] %}
+                 
+<li class="event-card cat-{{ event.category }}">
+    <div class="event-media">
+        {% if event.image %}
+            <img class="event-image" src="{{ asset('uploads/' ~ event.image) }}" alt="">
+        {% else %}
+            <img class="event-image" src="{{ asset('images/' ~ event.category ~ '.jpg') }}" alt="">
+        {% endif %}
+        <div class="event-date"><span class="day">{{ event.date|date('d') }}</span><span class="month">{{ mois[event.date|date('n') - 1] }}</span></div>
+        <span class="badge">{{ event.categoryLabel }}</span>
+    </div>
+    <h3 class="event-title"><a href="{{ path('app_event_show', {id: event.id}) }}">{{ event.title }}</a></h3>
+    <span class="muted">{{ event.date|date('d/m/Y · H\\hi') }}</span>
+    
+    {% if show_unregister|default(false) %}
+        <form method="post" action="{{ path('app_event_unregister', {id: event.id}) }}">
+            <input type="hidden" name="return_to" value="my_events">
+            <button type="submit" class="btn btn-small btn-secondary">
+                Se désinscrire
+            </button>
+        </form>
+    {% endif %}
+</li>

@@ -6,12 +6,13 @@
 
 {% block body %}
     <div class="narrow">
-        <a class="back-link" href="#">← Retour à l'événement</a>
+        <a class="back-link" href="{{ path('app_event_show', {id: event.id}) }}">← Retour à l'événement</a>
 
         <div class="card">
             <h1>Modifier l'événement</h1>
 
-            {# Le formulaire Symfony s'affiche ici #}
+            {{ form(form, {attr: {class: 'form'}}) }}
+
         </div>
     </div>
 {% endblock %}

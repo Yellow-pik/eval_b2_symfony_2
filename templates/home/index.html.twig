@@ -23,27 +23,12 @@
         </ul>
     </div>
 
-    {# Noms des mois en français (le filtre date affiche les mois en anglais) #}
-    {% set mois = ['janv.', 'févr.', 'mars', 'avr.', 'mai', 'juin', 'juil.', 'août', 'sept.', 'oct.', 'nov.', 'déc.'] %}
-
     {% if events is empty %}
         <p class="empty">Aucun événement à venir pour le moment.</p>
     {% else %}
         <ul class="event-list">
             {% for event in events %}
-                <li class="event-card cat-{{ event.category }}">
-                    <div class="event-media">
-                        {% if event.image %}
-                            <img class="event-image" src="{{ asset('uploads/' ~ event.image) }}" alt="">
-                        {% else %}
-                            <img class="event-image" src="{{ asset('images/' ~ event.category ~ '.jpg') }}" alt="">
-                        {% endif %}
-                        <div class="event-date"><span class="day">{{ event.date|date('d') }}</span><span class="month">{{ mois[event.date|date('n') - 1] }}</span></div>
-                        <span class="badge">{{ event.categoryLabel }}</span>
-                    </div>
-                    <h3 class="event-title"><a href="{{ path('app_event_show', {id: event.id}) }}">{{ event.title }}</a></h3>
-                    <span class="muted">{{ event.date|date('d/m/Y · H\\hi') }}</span>
-                </li>
+                {{ include('event/_card.html.twig', {event: event}) }}
             {% endfor %}
         </ul>
     {% endif %}

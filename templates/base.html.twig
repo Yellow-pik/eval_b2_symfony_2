@@ -37,9 +37,7 @@
                     {% endif %}
 
                     {% if app.user %}
-                        {# Évaluation 2 – lien vers la page « Mes inscriptions » (route à créer) :
                         <a href="{{ path('app_my_events') }}">Mes inscriptions</a>
-                        #}
                         <a class="btn btn-small" href="{{ path('app_logout') }}">Se déconnecter</a>
                     {% else %}
                         <a href="{{ path('app_login') }}">Connexion</a>

@@ -8,38 +8,18 @@
     <div class="section-head">
         <div>
             <h1>Mes inscriptions</h1>
-            <p class="muted">Vous êtes inscrit à 2 événement(s).</p>
+            <p class="muted">Vous êtes inscrit à {{ events|length }} événement(s).</p>
         </div>
     </div>
 
-    <ul class="event-list">
-        <li class="event-card cat-concert">
-            <div class="event-media">
-                <img class="event-image" src="{{ asset('images/concert.jpg') }}" alt="">
-                <div class="event-date"><span class="day">21</span><span class="month">nov.</span></div>
-                <span class="badge">Concert</span>
-            </div>
-            <h3 class="event-title"><a href="{{ path('app_event_show', {id: 1}) }}">Soirée jazz au Kiosque</a></h3>
-            <span class="muted">21/11/2026 · 20h30</span>
-            <form method="post">
-                <button type="submit" class="btn btn-small btn-secondary">Se désinscrire</button>
-            </form>
-        </li>
-        <li class="event-card cat-sport">
-            <div class="event-media">
-                <img class="event-image" src="{{ asset('images/sport.jpg') }}" alt="">
-                <div class="event-date"><span class="day">06</span><span class="month">déc.</span></div>
-                <span class="badge">Sport</span>
-            </div>
-            <h3 class="event-title"><a href="{{ path('app_event_show', {id: 4}) }}">Semi-marathon de la ville</a></h3>
-            <span class="muted">06/12/2026 · 09h00</span>
-            <form method="post">
-                <button type="submit" class="btn btn-small btn-secondary">Se désinscrire</button>
-            </form>
-        </li>
-    </ul>
+    {% if events is empty %}
+        <p class="empty">Vous n'êtes inscrit à aucun événement pour le moment.</p>
+    {% else %}
+        <ul class="event-list">
+            {% for event in events %}
+                {{ include('event/_card.html.twig', {event: event, show_unregister : true}) }}
+            {% endfor %}
+        </ul>
+    {% endif %}
 
-    {# Si l'utilisateur n'est inscrit à aucun événement :
-    <p class="empty">Vous n'êtes inscrit à aucun événement pour le moment.</p>
-    #}
 {% endblock %}

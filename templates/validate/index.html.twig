@@ -37,11 +37,9 @@
                                 <form method="post" action="{{ path('app_validate_event', {id: event.id}) }}">
                                     <button type="submit" class="btn btn-small btn-success">Valider</button>
                                 </form>
-                                {# Évaluation 2 – bouton « Refuser » à rendre fonctionnel :
-                                <form method="post">
+                                <form method="post" action="{{  path('app_reject_event', {id: event.id}) }}">
                                     <button type="submit" class="btn btn-small btn-danger">Refuser</button>
                                 </form>
-                                #}
                             </td>
                         </tr>
                     {% endfor %}
