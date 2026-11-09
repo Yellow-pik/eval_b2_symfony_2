@@ -45,8 +45,8 @@ Référence : *Symfony : The Fast Track*, chapitre 17 « Tester » : <https://sy
 Le rendu se fait sur **votre fork** (branche `main`). Avant la date limite, complétez ce bloc et commitez-le :
 
 ```text
-Nom       : ...
-Prénom    : ...
+Nom       : Franco
+Prénom    : Noé
 ```
 
 La correction se fera en lançant `make tests` : **tous les tests doivent passer** (`OK` en vert). Inutile de commiter une base de données : les fixtures la recréent.
