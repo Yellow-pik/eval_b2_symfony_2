@@ -160,7 +160,11 @@ main.container { padding-top: 32px; padding-bottom: 64px; }
 .event-card:hover .event-title a { color: var(--cat); }
 
 /* Bouton « Se désinscrire » sous une carte (page « Mes inscriptions ») */
-.event-card form { margin: 10px 0 0; }
+.event-card form { 
+    margin: 10px 0 0;
+    position: relative;
+    z-index: 1;
+ }
 
 /* Une couleur par catégorie */
 .cat-concert { --cat: var(--concert); }
